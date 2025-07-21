@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
@@ -16,6 +17,11 @@ Livewire::setScriptRoute(function ($handle) {
 /*
 / END
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Halaman utama voting
+Route::get('/', [FrontendController::class, 'index'])->name('vote.index');
+Route::post('/vote/{idea}', [FrontendController::class, 'store'])
+     ->name('vote.store');
